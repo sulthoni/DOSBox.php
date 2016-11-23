@@ -8,6 +8,7 @@ use DOSBox\Command\Library\CmdDir as CmdDir;
 use DOSBox\Command\Library\CmdMkDir as CmdMkDir;
 use DOSBox\Command\Library\CmdMkFile as CmdMkFile;
 use DOSBox\Command\Library\CmdVer as CmdVer;
+use DOSBox\Command\Library\CmdTime as CmdTime;
 
 class CommandFactory {
     private $commands = array();
