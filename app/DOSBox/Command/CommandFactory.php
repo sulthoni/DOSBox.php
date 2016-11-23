@@ -7,6 +7,7 @@ use DOSBox\Command\Library\CmdCd as CmdCd;
 use DOSBox\Command\Library\CmdDir as CmdDir;
 use DOSBox\Command\Library\CmdMkDir as CmdMkDir;
 use DOSBox\Command\Library\CmdMkFile as CmdMkFile;
+use DOSBox\Command\Library\CmdTime as CmdTime;
 
 class CommandFactory {
     private $commands = array();
@@ -21,6 +22,7 @@ class CommandFactory {
         array_push($this->commands, new CmdMkFile("mf", $drive));
 
         // Add your commands here
+        array_push($this->commands, new CmdTime("time", $drive));
     }
 
     public function getCommands(){
