@@ -21,6 +21,7 @@ class Console {
     public function processInput(){
         $this->outputter->printLine("DOSBox, Scrum.org, Professional Scrum Developer Training.");
         $this->outputter->printLine("Copyright (c) Joshua Partogi. All rights reserved.");
+        $this->outputter->printLine("untuk pelatihan BPS");
 
         $line = "";
 
@@ -34,6 +35,7 @@ class Console {
                 $line = $char;
             } catch (Exception $e){
                 // do nothing by intention
+                $this->outputter->printLine("Goodbye!");
             }
 
             $this->invoker->executeCommand($line, $this->outputter);

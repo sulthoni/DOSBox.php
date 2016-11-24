@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 namespace DOSBox\Command;
 
 use DOSBox\Interfaces\IDrive;
