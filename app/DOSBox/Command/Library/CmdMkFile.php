@@ -21,10 +21,23 @@ class CmdMkFile extends Command {
     }
 
     public function execute(IOutputter $outputter){
-        $fileName = $this->params[0];
-        $fileContent = $this->params[1];
-        $newFile = new File($fileName, $fileContent);
-        $this->getDrive()->getCurrentDirectory()->add($newFile);
+        if ( count($this->params) != 0){
+            $fileName = $this->params[0];
+            if ( count($this->params) > 1){
+                $fileContent = $this->params[1];
+            } else {
+                $fileContent = "";
+            }
+            $newFile = new File($fileName, $fileContent);
+            $this->getDrive()->getCurrentDirectory()->add($newFile);
+            $outputter->newLine();
+            $outputter->printNoLine("file  " . $newFile . "  telah dibuat...");
+            $outputter->newLine();
+        } else{
+            $outputter->newLine();
+            $outputter->printNoLine("Setidaknya berikan nama file!!!");
+            $outputter->newLine();
+        }
     }
 
 }

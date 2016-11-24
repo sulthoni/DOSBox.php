@@ -26,21 +26,21 @@ class Console {
         $line = "";
 
         while(strcmp(trim($line), "exit") != 0){
-            $this->outputter->newLine();
-            $this->outputter->printNoLine($this->drive->getPrompt());
+            if(strcmp(trim($line), "exit gugus") != 0){
+                $this->outputter->newLine();
+                $this->outputter->printNoLine($this->drive->getPrompt());
 
-            try{
-                $char = trim(fread(STDIN, 256));
-                //$char = trim(fgets(STDIN));
-                $line = $char;
-            } catch (Exception $e){
-                // do nothing by intention
-                $this->outputter->printLine("Goodbye!");
+                try{
+                    $char = trim(fread(STDIN, 256));
+                    //$char = trim(fgets(STDIN));
+                    $line = $char;
+                } catch (Exception $e){
+                    // do nothing by intention
+                }
+                $this->invoker->executeCommand($line, $this->outputter);
+            }else{
+                $line ="exit";             
             }
-
-            $this->invoker->executeCommand($line, $this->outputter);
         }
-
-        $this->outputter->printLine("Goodbye!");
     }
 }
