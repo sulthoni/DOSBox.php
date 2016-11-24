@@ -8,6 +8,8 @@ use DOSBox\Filesystem\Directory;
 use DOSBox\Command\BaseCommand as Command;
 
 class CmdMkDir extends Command {
+    private $directoryToPrint;
+
     const PARAMETER_CONTAINS_BACKLASH = "At least one parameter denotes a path rather than a directory name.";
 
     public function __construct($commandName, IDrive $drive){
@@ -38,13 +40,44 @@ class CmdMkDir extends Command {
     }
 
     public function execute(IOutputter $outputter){
-        for($i=0; $i < $this->getParameterCount(); $i++) {
-            $this->createDirectory($this->params[$i], $this->getDrive());
-        }
+        
+            for($i=0; $i < $this->getParameterCount(); $i++) {
+
+            //test begin
+            $this->directoryToPrint = $this->getDrive()->getCurrentDirectory(); 
+            $this->directoryToPrint->getContent();
+            if ($this->directoryToPrint->getNumberOfContainedDirectories()==0){
+                $this->createDirectory($this->params[$i], $this->getDrive());
+
+            } else {
+
+                $dirAvailable=true;
+                foreach ($this->directoryToPrint->getContent() as $item) {
+                    if($this->params[$i]==$item->getName()){
+                        $outputter->printLine("Nama direktori sudah ada");
+                        $dirAvailable=false;
+                        break;
+                    } 
+
+                }
+
+                 if($dirAvailable==true){$this->createDirectory($this->params[$i], $this->getDrive());
+                    }
+                //end test
+            }
+                      
+
+            }
+        
     }
 
     public function createDirectory($newDirectoryName, IDrive $drive) {
         $newDirectory = new Directory($newDirectoryName);
         $drive->getCurrentDirectory()->add($newDirectory);
+    }
+
+    public function checkAvailableDirectory($newDirectoryName,$outputter){
+
+
     }
 }
