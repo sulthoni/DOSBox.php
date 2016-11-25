@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Skip to content
 This repository
 Search
@@ -18,10 +19,17 @@ RawBlameHistory
 45 lines (35 sloc)  1.35 KB
 <?php
 namespace DOSBox\Command\Library;
+=======
+<?php
+
+namespace DOSBox\Command\Library;
+
+>>>>>>> dec3aa05a6653e8985cc0ada2816b256b1edb2e2
 use DOSBox\Interfaces\IDrive;
 use DOSBox\Interfaces\IOutputter;
 //use DOSBOx\Filesystem\Directory;
 use DOSBox\Command\BaseCommand as Command;
+<<<<<<< HEAD
 class CmdVer extends Command {
     private $variasi;
     public function __construct($commandName, IDrive $drive){
@@ -30,6 +38,20 @@ class CmdVer extends Command {
     public function checkNumberOfParameters($numberOfParametersEntered) {
         return ($numberOfParametersEntered == 0 || $numberOfParametersEntered == 1);
     }
+=======
+
+class CmdVer extends Command {
+    private $variasi;
+
+    public function __construct($commandName, IDrive $drive){
+        parent::__construct($commandName, $drive);
+    }
+
+    public function checkNumberOfParameters($numberOfParametersEntered) {
+        return ($numberOfParametersEntered == 0 || $numberOfParametersEntered == 1);
+    }
+
+>>>>>>> dec3aa05a6653e8985cc0ada2816b256b1edb2e2
     public function checkParameterValues(IOutputter $outputter) {
         if($this->getParameterCount() > 0) {
             //$outputter->printLine($this->params[0]);
@@ -40,6 +62,10 @@ class CmdVer extends Command {
             return true;
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> dec3aa05a6653e8985cc0ada2816b256b1edb2e2
     public function execute(IOutputter $outputter){
         $outputter->printLine("Microsoft Windows XP [Version 5.1.2600]");
         if ($this->variasi == "/w"){
@@ -53,6 +79,10 @@ class CmdVer extends Command {
         
     }
     
+<<<<<<< HEAD
 }
 Contact GitHub API Training Shop Blog About
 © 2016 GitHub, Inc. Terms Privacy Security Status Help
+=======
+}
+>>>>>>> dec3aa05a6653e8985cc0ada2816b256b1edb2e2

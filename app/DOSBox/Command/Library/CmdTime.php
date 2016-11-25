@@ -4,6 +4,7 @@ namespace DOSBox\Command\Library;
 
 use DOSBox\Interfaces\IDrive;
 use DOSBox\Interfaces\IOutputter;
+
 //use DOSBOx\Filesystem\Directory;
 use DOSBox\Command\BaseCommand as Command;
 
@@ -11,6 +12,7 @@ class CmdTime extends Command {
     //setting variabel untuk mengetahui
     private $timeParams;
     private $timeValid;
+
 
     public function __construct($commandName, IDrive $drive){
         parent::__construct($commandName, $drive);
@@ -48,4 +50,25 @@ class CmdTime extends Command {
             $this->timeParams=null;
         }
     }
+
+    /*public function execute(IOutputter $outputter){
+        $this->checkParameterValues($outputter);
+
+        $this->printTime($this->timeParam, $outputter);
+
+    }
+
+    public function printTime($timeParam, IOutputter $outputter) {
+        if($this->timeParam <> null){
+            if($this->timeParam == "21:30:10"){
+                $outputter->newLine();
+            } else {
+                $outputter->printLine("Parameter not found");
+            }
+        } else {
+            date_default_timezone_set("Asia/Jakarta");
+            $outputter->printLine(date("H:i:s"));
+        }
+
+    }*/
 }

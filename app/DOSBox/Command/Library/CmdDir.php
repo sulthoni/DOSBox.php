@@ -48,7 +48,7 @@ class CmdDir extends Command {
         $this->checkParameterValues($outputter);
 
         $this->printHeader($this->directoryToPrint, $outputter);
-        $this->printContent($this->directoryToPrint->getContent(), $outputter);
+        $this->printContent($this->directoryToPrint->getContent(), $this->directoryToPrint->getTime(),$outputter);
         $this->printFooter($this->directoryToPrint, $outputter);
     }
 
@@ -57,20 +57,30 @@ class CmdDir extends Command {
         $outputter->newLine();
     }
 
-    public function printContent($directoryContent, IOutputter $outputter) {
+    public function printContent($directoryContent,$directoryTime, IOutputter $outputter) {
+        $i=0;
+
         foreach ($directoryContent as $item) {
             if ($item->isDirectory()) {
                 $outputter->printNoLine("\t\t\t");
+                $outputter->printNoLine($item->getTgl());
+                $outputter->printNoLine("\t");
                 $outputter->printNoLine("<DIR>");
                 $outputter->printNoLine("\t");
                 $outputter->printNoLine("  ");
             } else {
-                $outputter->printNoLine("\t\t\t\t");
+                $outputter->printNoLine("\t\t\t");
+                $outputter->printNoLine($item->getTgl());
+                $outputter->printNoLine("\t\t");
                 $outputter->printNoLine($item->getSize() . " ");
             }
 
             $outputter->printNoLine($item->getName());
+            $outputter->printNoLine("\t");
+            $outputter->printNoLine($directoryTime[$i]);
             $outputter->newLine();
+        
+            $i++;
         }
     }
 

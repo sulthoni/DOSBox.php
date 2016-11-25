@@ -6,15 +6,22 @@ use DOSBox\Filesystem\FileSystemItem;
 
 class Directory extends FileSystemItem {
     private $content; // FileSystemItem
+    private $contentTime;
+    private $tgl; //joko
 
     public function __construct($name){
         parent::__construct($name, NULL);
         $this->content = array();
+        $this->contentTime = array();
+        $this->tgl = date('d/m/Y h:i:s a', time()); //joko
     }
 
     // Adding File and Directory using the same method.
     public function add(FileSystemItem $fileSystemItemToAdd){
+
         array_push($this->content, $fileSystemItemToAdd);
+        date_default_timezone_set("Asia/Jakarta");
+        array_push($this->contentTime, date("H:i:s"));
         if(!$this->hasAnotherParent($fileSystemItemToAdd)){
             $this->removeParent($fileSystemItemToAdd);
         }
@@ -40,6 +47,15 @@ class Directory extends FileSystemItem {
 
     public function getContent(){
         return $this->content;
+    }
+
+
+    public function getTime(){
+        return $this->contentTime;
+    }
+
+    public function getTgl(){ //joko
+        return $this->tgl;
     }
 
     public function isDirectory() {
@@ -75,6 +91,7 @@ class Directory extends FileSystemItem {
         $key = array_search($item, $this->content);
         if($key!==false){
             unset($this->content[$key]);
+            unset($this->contentTime[$key]);
         }
     }
 }
