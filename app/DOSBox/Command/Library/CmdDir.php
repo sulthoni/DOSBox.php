@@ -67,7 +67,9 @@ class CmdDir extends Command {
                 $outputter->printNoLine("\t");
                 $outputter->printNoLine("  ");
             } else {
-                $outputter->printNoLine("\t\t\t\t");
+                $outputter->printNoLine("\t\t\t");
+                $outputter->printNoLine($item->getTgl());
+                $outputter->printNoLine("\t\t");
                 $outputter->printNoLine($item->getSize() . " ");
             }
 
