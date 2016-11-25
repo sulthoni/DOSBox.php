@@ -7,11 +7,13 @@ use DOSBox\Filesystem\FileSystemItem;
 class Directory extends FileSystemItem {
     private $content; // FileSystemItem
     private $contentTime;
+    private $tgl; //joko
 
     public function __construct($name){
         parent::__construct($name, NULL);
         $this->content = array();
         $this->contentTime = array();
+        $this->tgl = date('d/m/Y h:i:s a', time()); //joko
     }
 
     // Adding File and Directory using the same method.
@@ -47,8 +49,13 @@ class Directory extends FileSystemItem {
         return $this->content;
     }
 
+
     public function getTime(){
         return $this->contentTime;
+    }
+
+    public function getTgl(){ //joko
+        return $this->tgl;
     }
 
     public function isDirectory() {
