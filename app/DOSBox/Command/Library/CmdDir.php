@@ -61,6 +61,8 @@ class CmdDir extends Command {
         foreach ($directoryContent as $item) {
             if ($item->isDirectory()) {
                 $outputter->printNoLine("\t\t\t");
+                $outputter->printNoLine($item->getTgl());
+                $outputter->printNoLine("\t");
                 $outputter->printNoLine("<DIR>");
                 $outputter->printNoLine("\t");
                 $outputter->printNoLine("  ");
